@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="brand-login">
+    <div class="brand">
+      <div class="app-logo">notwait</div>
+
+      <!-- <div class="form-group">
+        <label for="file">Choose File</label>
+        <input type="file"
+              id="file"
+              (change)="handleFileInput($event.target.files)">
+      </div>     -->
+
+     <div class="slogan">¡Que el esperar no te quite tiempo!</div>
+     </div>
+    <div class="client login">
+      {{userLogged}}
+      <button class="basic-button" id="l" (click)="login()">Entrar con Google</button>
+    </div>
+    <div class="business login">
+      <input class="basic-input" type="email" placeholder="Correo electrónico">
+      <input class="basic-input" type="password" placeholder="Contraseña">
+      <button class="basic-button">Inicia sesión</button>
+      <div class="separator">
+        <div class="line"></div>o<div class="line"></div>
+      </div>
+      <button routerLink="/auth/register" class="basic-button">Regístrate</button>
+    </div>
+  </div>
+  <div class="options">
+    <div class="op-c option cliente" id="activateClient" >Cliente</div>
+    <div class="op-b option negocio" id="activateBusiness">Negocio</div>
+  </div>
+
+</div>
+
+
