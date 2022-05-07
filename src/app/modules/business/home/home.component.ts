@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { DatabaseService } from 'src/app/shared/services/database.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dbService: DatabaseService, private authService: AuthService ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
+  logout() {
+    this.authService.signOut();
+  }
 }

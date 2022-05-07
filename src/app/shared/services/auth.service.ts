@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStat
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore/lite';
 import { Observable } from 'rxjs';
 import { db, gAuth } from 'src/environments/environment';
+import { UserBusiness } from '../models/user-business.model';
+import { DatabaseService } from './database.service';
 
 const auth = getAuth();
 
@@ -12,7 +14,7 @@ const auth = getAuth();
 })
 export class AuthService {
 
-  constructor(public router: Router) { 
+  constructor(public router: Router, public dbService: DatabaseService) { 
     let state = {
       email: '',
       password: '',
@@ -73,17 +75,48 @@ export class AuthService {
   }
 
   // Crear cuenta con correo electrónico y contraseña 
-  register(email: string, password: string) {
+  register(email: string, password: string, businessData: UserBusiness, businessPhotos: Array<any>) {
     createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
+  .then(async (userCredential) => {
+
     const user = userCredential.user;
-    console.log(user);
+    businessData.uid = user.uid;
+
+    //Guardamos los datos del usuario Business registrado
+    const docSnap = await getDocs(query(collection(db, "business"), where("email", "==", businessData.email )));
+    if (docSnap.docs.length == 0) {
+      const docRef = await addDoc(collection(db, "business"),{
+        bussinessName: businessData.bussinessName,
+        description: businessData.description,
+        country: businessData.country,
+        stateProvince: businessData.stateProvince,
+        city: businessData.city,
+        postalCode: businessData.postalCode,
+        street: businessData.street,
+        number: businessData.number,
+        floor: businessData.floor,
+        door: businessData.door,
+        phone: businessData.phone,
+        category: businessData.category,
+        openingHour: businessData.openingHour,
+        closingHour: businessData.closingHour,
+        url: businessData.url,
+        email: businessData.email,
+        password: businessData.password,        
+        uid: businessData.uid,
+      });
+    }
+
+    //Para cada foto del array de fotos que usuario Business a incluido en el formulario las añadimos a la colleción de photos
+    businessPhotos.forEach(element => {
+      this.dbService.addImage(element);
+    });
+
+    this.signOut();
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ..
   });
 
   }

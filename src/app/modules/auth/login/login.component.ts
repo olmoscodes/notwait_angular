@@ -64,13 +64,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  //subir una foto WOKRING
-  // handleFileInput(files: FileList) {
-  //   this.fileToUpload = files.item(0);
-  //   console.log(this.fileToUpload);
-
-  //   this.dbService.addImage(this.fileToUpload);
-  // } 
 
   login() {
     this.authService.signInWithGoogle();

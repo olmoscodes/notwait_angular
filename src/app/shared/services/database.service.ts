@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth';
 import { collection, getDocs, getDoc, doc, addDoc, query, where } from 'firebase/firestore/lite';
 import { getBytes, ref, uploadBytes } from 'firebase/storage';
 import { db, storage, gAuth } from 'src/environments/environment';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const auth = getAuth();
 
@@ -11,7 +14,7 @@ const auth = getAuth();
 })
 export class DatabaseService {
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   // Traer todos los documentos de una colección
   async getDocs(col: string) {
@@ -73,10 +76,22 @@ export class DatabaseService {
   }
 
   // Añadir una imagen
-  async addImage(file: Blob | Uint8Array | ArrayBuffer) {
-    const imagesRef = ref(storage, 'images');
+  async addImage(file: any) {
+
+    const newPhotoUid: string = uuidv4();
+    const imagesRef = ref(storage, newPhotoUid);
+
     uploadBytes(imagesRef, file).then((snapshot) => {
       console.log('Uploaded a blob or file!');
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await addDoc(collection(db, "photos"),{
+          uuid_user: user.uid,
+          uuid_photo: newPhotoUid
+        });
+      }
     });
   }
 
