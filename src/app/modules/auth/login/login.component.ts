@@ -7,6 +7,8 @@ import { DatabaseService } from 'src/app/shared/services/database.service'
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { FormControl, FormGroup } from '@angular/forms';
+import { UserBusiness } from 'src/app/shared/models/user-business.model';
 
 const auth = getAuth();
 
@@ -17,14 +19,16 @@ const auth = getAuth();
 })
 export class LoginComponent implements OnInit {
 
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  })
 
   auth2: any;
 
   name: string | undefined;
 
   userLogged: string | undefined;
-
-  //fileToUpload: File | null = null;
   
 
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
@@ -67,6 +71,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.signInWithGoogle();
+  }
+
+  onLoginBusiness() {    
+    this.authService.registerWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
   }
 
 }

@@ -28,13 +28,19 @@ body {
     display: flex;
     justify-content: center;
 }
-  
+
+.app-logo {
+    font-family: 'Bogart';
+    color: white;
+    font-size: 44px;
+}
+
 
 app-login {
     display: flex;
     flex-direction: column;
     min-height: -webkit-fill-available;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: #53ae55;
     align-items: center !important;
@@ -42,8 +48,38 @@ app-login {
     color: white;
 }
 
-.app-logo {
-    font-family: 'Bogart';
-    color: white;
+app-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(200px, 80%, 400px);
 }
 
+.app-logo-small {
+    font-size: 30px;
+    font-family: 'Bogart';
+    color: white;
+    margin: 20px 0;
+
+}
+
+app-root {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+textarea, input {
+    font-family: 'Inter' !important;
+    font-size: 17px;
+    color: rgb(112, 112, 112);
+}
+
+.basic-button:hover {
+    cursor: pointer;
+}
+
+.basic-button {
+    min-height: 47px;
+    height: 47px;
+}

@@ -18,10 +18,10 @@ export class BusinessGuard implements CanActivate {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(auth, async (user) => {
         if (!user) {
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['']);
           resolve(false);
         } else if (user && await this.dbService.isUserBusiness(user.uid) === false){
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['']);
           resolve(false);
         } else {
           resolve(true);

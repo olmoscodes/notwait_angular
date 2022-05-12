@@ -8,15 +8,15 @@
       {{userLogged}}
       <button class="basic-button" id="l" (click)="login()">Entrar con Google</button>
     </div>
-    <div class="business login">
-      <input class="basic-input" type="email" placeholder="Correo electrónico">
-      <input class="basic-input" type="password" placeholder="Contraseña">
-      <button class="basic-button">Inicia sesión</button>
+    <form [formGroup]="loginForm" class="business login" (ngSubmit)="onLoginBusiness()">
+      <input class="basic-input" type="email" placeholder="Correo electrónico" formControlName="email">
+      <input class="basic-input" type="password" placeholder="Contraseña" formControlName="password">
+      <button class="basic-button" type="submit">Inicia sesión</button>
       <div class="separator">
         <div class="line"></div>o<div class="line"></div>
       </div>
       <button routerLink="auth/register" class="basic-button">Regístrate</button>
-    </div>
+    </form>
   </div>
   <div class="options">
     <div class="op-c option cliente" id="activateClient" >Cliente</div>

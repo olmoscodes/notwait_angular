@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, User } from 'firebase/auth';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore/lite';
 import { Observable } from 'rxjs';
 import { db, gAuth } from 'src/environments/environment';
@@ -118,6 +118,23 @@ export class AuthService {
     const errorCode = error.code;
     const errorMessage = error.message;
   });
+
+  }
+
+
+  registerWithEmailAndPassword(email: string, password: string) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
 
   }
   
