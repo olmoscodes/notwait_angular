@@ -68,6 +68,7 @@ export class AuthService {
   // Cerrar sesión
   signOut() {
     signOut(auth).then(() => {
+      this.router.navigate(['']);
       // Sign-out successful.
     }).catch((error) => {
       // An error happened.
@@ -86,7 +87,7 @@ export class AuthService {
     const docSnap = await getDocs(query(collection(db, "business"), where("email", "==", businessData.email )));
     if (docSnap.docs.length == 0) {
       const docRef = await addDoc(collection(db, "business"),{
-        bussinessName: businessData.bussinessName,
+        businessName: businessData.businessName,
         description: businessData.description,
         country: businessData.country,
         stateProvince: businessData.stateProvince,
@@ -104,6 +105,8 @@ export class AuthService {
         email: businessData.email,
         password: businessData.password,        
         uid: businessData.uid,
+        latitude: businessData.latitude,
+        longitude: businessData.longitude,
       });
     }
 
@@ -127,8 +130,7 @@ export class AuthService {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user)
+        const user = userCredential.user;        
         // ...
       })
       .catch((error) => {

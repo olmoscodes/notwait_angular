@@ -9,27 +9,91 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <!-- Inputs de texto -->
-    <input type="text" class="basic-input" formControlName="bussinessName" placeholder="Business name">
+    <input type="text" class="basic-input" formControlName="businessName" placeholder="Business name" required>
+    <div *ngIf="this.f['businessName'].dirty ||this.f['businessName'].touched && this.f['businessName']['errors']">
+        <div *ngIf="this.f['businessName']['errors'] && this.f['businessName']['errors']!['required']" class="invalid-feedback">The business name is required</div>
+        <div *ngIf="this.f['businessName']['errors'] && this.f['businessName']['errors']!['pattern']" class="invalid-feedback">The business name should only contain letters</div>
+    </div>
+
     <textarea type="text" class="basic-textarea" formControlName="description" placeholder="Your business description"></textarea>
+    <div *ngIf="this.f['description'].dirty ||this.f['description'].touched && this.f['description']['errors']">
+        <div *ngIf="this.f['description']['errors'] && this.f['description']['errors']!['required']" class="invalid-feedback">The description is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="country" placeholder="Country">
+    <div *ngIf="this.f['country'].dirty ||this.f['country'].touched && this.f['country']['errors']">
+        <div *ngIf="this.f['country']['errors'] && this.f['country']['errors']!['required']" class="invalid-feedback">The country is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="stateProvince" placeholder="State/Province">
+    <div *ngIf="this.f['stateProvince'].dirty ||this.f['stateProvince'].touched && this.f['stateProvince']['errors']">
+        <div *ngIf="this.f['stateProvince']['errors'] && this.f['stateProvince']['errors']!['required']" class="invalid-feedback">The country is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="city" placeholder="City">
+    <div *ngIf="this.f['city'].dirty ||this.f['city'].touched && this.f['city']['errors']">
+        <div *ngIf="this.f['city']['errors'] && this.f['city']['errors']!['required']" class="invalid-feedback">The city is required</div>
+    </div>
+    
     <input type="text" class="basic-input" formControlName="postalCode" placeholder="Postal code">
+    <div *ngIf="this.f['postalCode'].dirty ||this.f['postalCode'].touched && this.f['postalCode']['errors']">
+        <div *ngIf="this.f['postalCode']['errors'] && this.f['postalCode']['errors']!['required']" class="invalid-feedback">The postal code is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="street" placeholder="Street">
+    <div *ngIf="this.f['street'].dirty ||this.f['street'].touched && this.f['street']['errors']">
+        <div *ngIf="this.f['street']['errors'] && this.f['street']['errors']!['required']" class="invalid-feedback">The street is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="number" placeholder="Number">
+    <div *ngIf="this.f['number'].dirty ||this.f['number'].touched && this.f['number']['errors']">
+        <div *ngIf="this.f['number']['errors'] && this.f['number']['errors']!['required']" class="invalid-feedback">The number is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="floor" placeholder="Floor (optional)">
     <input type="text" class="basic-input" formControlName="door" placeholder="Door (optional)">
+
     <input type="text" class="basic-input" formControlName="phone" placeholder="Phone">
+    <div *ngIf="this.f['phone'].dirty ||this.f['phone'].touched && this.f['phone']['errors']">
+        <div *ngIf="this.f['phone']['errors'] && this.f['phone']['errors']!['required']" class="invalid-feedback">The phone is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="category" placeholder="Category">
+    <div *ngIf="this.f['category'].dirty ||this.f['category'].touched && this.f['category']['errors']">
+        <div *ngIf="this.f['category']['errors'] && this.f['category']['errors']!['required']" class="invalid-feedback">The category is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="openingHour" placeholder="Opening hour">
+    <div *ngIf="this.f['openingHour'].dirty ||this.f['openingHour'].touched && this.f['openingHour']['errors']">
+        <div *ngIf="this.f['openingHour']['errors'] && this.f['openingHour']['errors']!['required']" class="invalid-feedback">The opening hour is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="closingHour" placeholder="Closing Hour">
+    <div *ngIf="this.f['closingHour'].dirty ||this.f['closingHour'].touched && this.f['closingHour']['errors']">
+        <div *ngIf="this.f['closingHour']['errors'] && this.f['closingHour']['errors']!['required']" class="invalid-feedback">The closing hour is required</div>
+    </div>
+
     <input type="text" class="basic-input" formControlName="url" placeholder="Website URL">
+    <div *ngIf="this.f['url'].dirty ||this.f['url'].touched && this.f['url']['errors']">
+        <div *ngIf="this.f['url']['errors'] && this.f['url']['errors']!['required']" class="invalid-feedback">The website URL is required</div>
+    </div>
+
     <input type="email" class="basic-input" formControlName="email" placeholder="Email">
+    <div *ngIf="this.f['email'].dirty ||this.f['email'].touched && this.f['email']['errors']">
+        <div *ngIf="this.f['email']['errors'] && this.f['email']['errors']!['required']" class="invalid-feedback">The email is required</div>
+    </div>
+
     <input type="password" class="basic-input" formControlName="password" placeholder="Password">
+    <div *ngIf="this.f['password'].dirty ||this.f['password'].touched && this.f['password']['errors']">
+        <div *ngIf="this.f['password']['errors'] && this.f['password']['errors']!['required']" class="invalid-feedback">The password is required</div>
+    </div>
 
     <!-- Input para subir imágenes del negocio -->
-    <input formControlName="file" id="file" type="file" class="form-control" multiple="" (change)="onFileChange($event)" style="display: none;">
-    <input class="basic-button" type="button" value="Add your business pictures" onclick="document.getElementById('file').click();" />
+    <input formControlName="file" id="file" type="file" class="form-control" multiple="" (change)="onFileChange($event)"
+        style="display: none;">
+    <input class="basic-button" type="button" value="Add your business pictures"
+        onclick="document.getElementById('file').click();" />
+
 
     <!-- Sección donde se muestra una previsualización de las imágenes que vas a subir -->
     <div class="businessImage" *ngFor='let url of imagesToShow'>
@@ -39,6 +103,6 @@
         </a>
     </div>
 
-    <button class="basic-button" type="submit">Submit</button>
-    
+    <button [disabled]="submitNotOk" class="basic-button" type="submit">Submit</button>
+    <p style="color: lightgray; text-align: center; margin-top: -10px;" *ngIf="submitNotOk"> Sube como mínimo una imágen de tu negocio para habilitar el botón.</p>
 </form>

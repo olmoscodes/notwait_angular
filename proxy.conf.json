@@ -1,0 +1,7 @@
+{
+    "/api/*":{
+        "target":"https://timezoneapi.io",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

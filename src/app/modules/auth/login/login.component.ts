@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
 
     loginSwitcher.to(".client", {pointerEvents: "none", opacity: 0, position: "absolute", duration: 0.3})
     .to(".business", {pointerEvents: "auto", opacity: 1, duration: 0.3}, "-=0.3")
-    .to(".op-c", {backgroundColor: "rgba(255, 255, 255, 0.418)", color: "#53ae5475", duration: 0.3}, "-=0.3")
-    .to(".op-b", {backgroundColor: "white", color: "#53ae55", duration: 0.3 }, "-=0.3");
+    .to(".op-c", {color: "white", background: "#9d9d9d75", duration: 0.3}, "-=0.3")
+    .to(".op-b", {color: "white", background: "linear-gradient(138deg, rgba(133,205,110,1) 3%, rgba(83,174,85,1) 100%)", duration: 0.3 }, "-=0.3");
 
     let activateClient = document.getElementById("activateClient")!;
     let activateBusiness = document.getElementById("activateBusiness")!;
@@ -70,11 +70,20 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+    this.dotsAnimation();
     this.authService.signInWithGoogle();
   }
 
   onLoginBusiness() {    
     this.authService.registerWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+  }
+
+  dotsAnimation() {
+    const loadingDots = gsap.timeline()
+    loadingDots.to(".loadingBox", {opacity: 1, pointerEvents: "all"})
+    .fromTo(".d1", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
+    .fromTo(".d2", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
+    .fromTo(".d3", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
   }
 
 }

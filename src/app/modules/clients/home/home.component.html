@@ -1,5 +1,38 @@
-<p>
-  home clients works!
-</p>
+<div class="intro">
+  <div class="box">
+    <div class="loading-number">{{loader}}%</div>
+    <div class="line-loaded" [style.width]="lineLoaded"></div>
+    <div class="line-not-loaded" [style.width]="lineNotLoaded"></div>
+  </div>
+</div>
 
-<a (click)="logout()">LOG OUT</a>
+
+<div class="navbar">
+  <div class="app-logo-small">notwait</div>
+</div>
+
+<!-- <div class="buscador">
+  buscador
+</div> -->
+
+<div class="businessBoxes">
+  <div *ngFor="let item of sortByDistance(); let i = index" class="businessBox">
+    <div *ngIf="!item['distance'] || !item['imgURL']?dotsAnimation():false"></div>
+    <div class="loadingBox">
+      <div class="d1 dot"></div>
+      <div class="d2 dot"></div>
+      <div class="d3 dot"></div>
+    </div>
+    <img id="myimg" src="{{item['imgURL']}}" alt="">
+    <div class="details">
+      <div class="name">
+        {{item['businessName']}}
+      </div>
+      <div class="distance">
+        A {{item['distance'] | number : '1.2-2'}} Km
+      </div>
+    </div>
+  </div>
+</div>
+
+<a style="position: fixed; bottom: 0; left: 0;" (click)="logout()">LOG OUT</a>

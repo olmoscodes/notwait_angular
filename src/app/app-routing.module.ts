@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LocationInfoComponent } from './modules/location-info/location-info.component';
 
 const routes: Routes = [
   { 
@@ -21,6 +22,10 @@ const routes: Routes = [
   { 
     path: 'admin', 
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'location-info', 
+    component: LocationInfoComponent,
   }
 ];
 

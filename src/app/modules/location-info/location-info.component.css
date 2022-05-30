@@ -1,0 +1,38 @@
+p, h2, ol {
+    color: black;
+    width: 80%;
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+
+.basic-button {
+    background-color: rgb(83, 174, 85);
+    border: 0;
+    border-radius: 9px;
+    padding: 0px 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 40px;
+}
+
+.basic-button:hover {
+    cursor: pointer;
+}
+
+.messageButton {
+    text-align: center; 
+    color: rgb(169, 169, 169);
+    margin-bottom: 60px;
+}
+
+img {
+    max-width: 80%;
+    margin-top: 10px;
+}

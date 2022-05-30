@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserBusiness } from 'src/app/shared/models/user-business.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { DatabaseService } from 'src/app/shared/services/database.service';
 import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { GeoService } from 'src/app/shared/services/geo.service';
 
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"],
+  providers: [GeoService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -23,36 +25,47 @@ export class RegisterComponent implements OnInit {
   imagesToShow: SafeUrl[] = [];
   updatedImages: SafeUrl[] = [];
 
-  registerForm = new FormGroup({
-    bussinessName: new FormControl(''),
-    description: new FormControl(''),
-    country: new FormControl(''),
-    stateProvince: new FormControl(''),
-    city: new FormControl(''),
-    postalCode: new FormControl(''),
-    street: new FormControl(''),
-    number: new FormControl(''),
-    floor: new FormControl(''),
-    door: new FormControl(''),
-    phone: new FormControl(''),
-    category: new FormControl(''),
-    openingHour: new FormControl(''),
-    closingHour: new FormControl(''),
-    url: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    file: new FormControl(''),
-  });
+  registerForm = {} as FormGroup;
+
+  latitude: string = '';
+  longitude: string = '';
+  submitNotOk: boolean = true;
 
   constructor(public authService: AuthService,
     public dbService: DatabaseService,
-    private domSanitizer: DomSanitizer) { }
+    private domSanitizer: DomSanitizer,
+    public geolocate: GeoService,
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    
+    this.registerForm = new FormGroup({
+      businessName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      description: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required]),
+      stateProvince: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required]),
+      floor: new FormControl('', [Validators.required]),
+      door: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
+      openingHour: new FormControl('', [Validators.required]),
+      closingHour: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      file: new FormControl('', [Validators.required]),
+
+    })
+  }
+
 
   // Método para recoger toda la información del formulario y registrarse gracias al método register que cogemos del servicio Auth
   onSubmit() {
-    this.businessData.bussinessName = this.registerForm.value.bussinessName;
+    this.businessData.businessName = this.registerForm.value.businessName;
     this.businessData.description = this.registerForm.value.description;
     this.businessData.country = this.registerForm.value.country;
     this.businessData.stateProvince = this.registerForm.value.stateProvince;
@@ -69,6 +82,23 @@ export class RegisterComponent implements OnInit {
     this.businessData.url = this.registerForm.value.url;
     this.businessData.email = this.registerForm.value.email;
     this.businessData.password = this.registerForm.value.password;
+
+    this.geolocate.getCoord(
+      this.registerForm.value.country, 
+      this.registerForm.value.city, 
+      this.registerForm.value.postalCode, 
+      this.registerForm.value.street, 
+      this.registerForm.value.number).subscribe({
+        next: data => {
+          this.businessData.latitude = data.features[0].geometry.coordinates[1]
+          this.businessData.longitude = data.features[0].geometry.coordinates[0]
+        },
+        error: error => {
+          console.error('There waw an errror', error.message);
+        }
+      })
+
+
 
     this.authService.register(this.registerForm.value.email, this.registerForm.value.password, this.businessData, this.businessPhotos);
   }
@@ -95,6 +125,7 @@ export class RegisterComponent implements OnInit {
 
         reader.readAsDataURL(event.target.files[i]);
       }
+      this.submitNotOk = false;
     }
   }
 
@@ -115,6 +146,11 @@ export class RegisterComponent implements OnInit {
       }
       counter++;
     });
+
+    if (this.imagesToShow.length === 0) {
+      this.submitNotOk = true;
+    }
   }
 
 }
+

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth';
-import { collection, getDocs, getDoc, doc, addDoc, query, where } from 'firebase/firestore/lite';
-import { getBytes, ref, uploadBytes } from 'firebase/storage';
+import { collection, getDocs, getDoc, doc, addDoc, query, where, DocumentData } from 'firebase/firestore/lite';
+import { getBytes, getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { db, storage, gAuth } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,17 +18,19 @@ export class DatabaseService {
 
   // Traer todos los documentos de una colección
   async getDocs(col: string) {
+    let docsArray: DocumentData[] = [];
     const docRef = collection(db, col);
     const docSnap = await getDocs(docRef);
 
     if (!docSnap.empty) {
       docSnap.forEach((doc) => {
-        //console.log(`${doc.id} => ${doc.data()}`);
+        docsArray.push(doc.data())
       });
     } else {
-      //console.log("The collection is empty!");
     }
+    return docsArray;
   }
+  
 
   // Traer un documento de una colección
   async getDoc(col: string, id: string) {
@@ -82,7 +84,6 @@ export class DatabaseService {
     const imagesRef = ref(storage, newPhotoUid);
 
     uploadBytes(imagesRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
     });
 
     onAuthStateChanged(auth, async (user) => {
@@ -95,11 +96,16 @@ export class DatabaseService {
     });
   }
 
-  // Traer un imagen
-  async getImage() {
-    const imagesRef = ref(storage, 'images');
-    getBytes(imagesRef);
+
+
+  // Traer un imagen con el id de la foto
+  async getImage(uid_photo: string) {
+    const storage = getStorage();
+    return getDownloadURL(ref(storage, uid_photo))
   }
+
+
+
 
 }
 
