@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { 
     path: 'clients',
-    loadChildren: () => import('./modules/clients/clients.module').then(m => m.ClientsModule)
+    loadChildren: () => import('./modules/clients-zone/clients-zone.module').then(m => m.ClientsZoneModule)
   },
   { 
     path: 'business', 

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css'],
+  selector: 'app-clients-zone',
+  templateUrl: './clients-zone.component.html',
+  styleUrls: ['./clients-zone.component.css'],
 })
-export class ClientsComponent implements OnInit {
+export class ClientsZoneComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 

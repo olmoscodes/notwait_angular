@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClientsRoutingModule } from './clients-routing.module';
+import { ClientsZoneRoutingModule } from './clients-zone-routing.module';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { sqrt } from 'mathjs'
+import { sqrt } from 'mathjs';
+import { BusinessComponent } from './business/business.component'
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    BusinessComponent
   ],
   imports: [
     CommonModule,
-    ClientsRoutingModule,
+    ClientsZoneRoutingModule,
     RouterModule.forChild([
       { path: '', component: HomeComponent}
     ])
   ]
 })
-export class ClientsModule { }
+export class ClientsZoneModule { }
