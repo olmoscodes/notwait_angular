@@ -1,1 +1,25 @@
-<p>business works!</p>
+<div class="navbar">
+    <div class="app-logo-small">notwait</div>  
+</div>
+
+<div class="businessDataBox" *ngIf="businessData" style="color: black">
+    <img class="businessImg" src="{{businessData['imgURL']}}" alt="">
+    <div class="card">
+        <div class="card-inside">
+            <div class="title-status">
+                <div class="title">{{businessData['businessName']}}</div>
+                <div class="status ok">Abierto</div>
+            </div>
+            <div class="category">{{businessData['category']}}</div>
+            <div class="description">{{businessData['description']}}</div>
+            <button class="basic-button grey">¿Cómo llegar?</button>
+            <div class="buttons-second-line">
+                <button class="basic-button grey mid">Llamar</button>
+                <button class="basic-button grey mid ">Email</button>
+            </div>
+            <button class="queue-button">
+                <img src="/assets/img/people-group-solid.png" alt="">
+            </button>    
+        </div>
+    </div>
+</div>

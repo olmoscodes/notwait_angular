@@ -32,8 +32,8 @@ export class DatabaseService {
   }
   
 
-  // Traer un documento de una colección
-  async getDoc(col: string, id: string) {
+  // Traer un documento de una colección por el id del documento
+  async getDocById(col: string, id: string) {
     const docRef = doc(db, col, id);
     const docSnap = await getDoc(docRef);
 
@@ -43,6 +43,19 @@ export class DatabaseService {
       //console.log("No such document!");
     }
   }
+
+    // Traer un documento de una colección que el field es = a la data proporcionada
+    async getDocByFieldAndData(col: string, field: string, data: string) {
+      let result: any = null;
+      const q = query(collection(db, col), where(field, "==", data));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty && querySnapshot.docs[0].exists()) {
+        result = querySnapshot.docs[0].data();
+      } 
+
+      return result;
+    }
 
   // Comprobar en la base de datos si el usuario logeado es Client
   async isUserClient(uid: string) {

@@ -16,7 +16,7 @@
 </div> -->
 
 <div class="businessBoxes">
-  <div *ngFor="let item of sortByDistance(); let i = index" class="businessBox">
+  <div *ngFor="let item of sortByDistance(); let i = index" class="businessBox" routerLink="{{item['uid']}}">
     <div *ngIf="!item['distance'] || !item['imgURL']?dotsAnimation():false"></div>
     <div class="loadingBox">
       <div class="d1 dot"></div>

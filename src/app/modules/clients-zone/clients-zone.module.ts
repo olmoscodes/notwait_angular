@@ -17,7 +17,8 @@ import { BusinessComponent } from './business/business.component'
     CommonModule,
     ClientsZoneRoutingModule,
     RouterModule.forChild([
-      { path: '', component: HomeComponent}
+      { path: '', component: HomeComponent},
+      { path: ':id', component: BusinessComponent}
     ])
   ]
 })

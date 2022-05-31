@@ -178,9 +178,9 @@ export class HomeComponent implements OnInit {
   dotsAnimation() {
     const loadingDots = gsap.timeline({paused: true})
 
-    loadingDots.fromTo(".d1", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
-    .fromTo(".d2", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
-    .fromTo(".d3", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
+    loadingDots.fromTo(".d1", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
+    .fromTo(".d2", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
+    .fromTo(".d3", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
     
     loadingDots.play();
 

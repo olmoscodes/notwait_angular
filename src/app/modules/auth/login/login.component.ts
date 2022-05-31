@@ -81,9 +81,9 @@ export class LoginComponent implements OnInit {
   dotsAnimation() {
     const loadingDots = gsap.timeline()
     loadingDots.to(".loadingBox", {opacity: 1, pointerEvents: "all"})
-    .fromTo(".d1", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
-    .fromTo(".d2", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
-    .fromTo(".d3", 0.2, {backgroundColor: '#53ae55'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
+    .fromTo(".d1", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
+    .fromTo(".d2", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
+    .fromTo(".d3", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
   }
 
 }

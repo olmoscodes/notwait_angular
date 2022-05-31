@@ -1,0 +1,132 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 26%, rgba(255,255,255,0) 100%);
+    z-index: 100;
+    height: 100px;
+}
+
+.navbar .app-logo-small {
+    color: black;
+}
+
+.businessDataBox {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.businessDataBox .businessImg {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    font-family: 'Inter';
+} 
+
+.businessDataBox .card {
+    width: clamp(200px, 100%, 400px);
+    height: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    border-radius: 50px 50px 0 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.businessDataBox .card .card-inside {
+    width: 80%;
+    height: 80%;
+}
+
+.title-status {
+    display: flex;
+    position: relative;
+}
+
+.status {
+    color: white;
+    padding: 6px 12px;
+    zoom: 0.7;
+    border-radius: 11px;
+    border: 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.ok {
+    background-color: #5fce62;
+}
+
+.not-ok {
+    background-color: gray;
+}
+
+.title {
+    zoom: 1.4;
+}
+
+.category {
+    color: #cbcbcb;
+    margin-top: 2px;
+    margin-bottom: 7px;
+}
+
+.basic-button {
+    border: 0;
+    border-radius: 9px;
+    padding: 0px 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 12px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.grey {
+    background-color: rgb(230 230 230);
+    color: black;
+}
+
+.buttons-second-line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mid {
+    width: 48%;
+}
+
+.queue-button {
+    font-size: 40px;
+    background-color: #5fce62;
+    color: white;
+    width: 100%;
+    border-radius: 9px;
+    padding: 0px 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    margin-top: 16px;
+    height: 118px;
+}
+
+.queue-button img {
+    width: 40%;
+}
+
+
