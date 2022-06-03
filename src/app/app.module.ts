@@ -10,13 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CommonModule } from '@angular/common';
 import { LocationInfoComponent } from './modules/location-info/location-info.component';
-import { ProximityInfoComponent } from './modules/clients-zone/proximity-info/proximity-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LocationInfoComponent,
-    ProximityInfoComponent
   ],
   imports: [
     BrowserModule,

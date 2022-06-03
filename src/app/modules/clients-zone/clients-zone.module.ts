@@ -9,6 +9,7 @@ import { BusinessComponent } from './business/business.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClientsSettingsComponent } from './clients-settings/clients-settings.component';
 import { ProximityInfoComponent } from './proximity-info/proximity-info.component';
+import { ClientsQueueComponent } from './clients-queue/clients-queue.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProximityInfoComponent } from './proximity-info/proximity-info.componen
     HomeComponent,
     BusinessComponent,
     ClientsSettingsComponent,
-    ProximityInfoComponent
+    ProximityInfoComponent,
+    ClientsQueueComponent
   ],
   imports: [
     CommonModule,
@@ -24,9 +26,10 @@ import { ProximityInfoComponent } from './proximity-info/proximity-info.componen
     FontAwesomeModule,
     RouterModule.forChild([
       { path: '', component: HomeComponent},
-      { path: ':id', component: BusinessComponent},
+      { path: 'card/:id', component: BusinessComponent},
       { path: 'settings', component: ClientsSettingsComponent},
-      { path: 'proximity-info', component: ProximityInfoComponent}
+      { path: 'proximity-info', component: ProximityInfoComponent},
+      { path: 'queue/:idBusiness', component: ClientsQueueComponent}
     ])
   ]
 })

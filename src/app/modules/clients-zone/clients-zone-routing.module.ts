@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientGuard } from 'src/app/shared/guards/client/client.guard';
+import { ClientsQueueComponent } from './clients-queue/clients-queue.component';
 import { BusinessComponent } from './business/business.component';
 import { ClientsSettingsComponent } from './clients-settings/clients-settings.component';
 import { HomeComponent } from './home/home.component';
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'proximity-info',
     component: ProximityInfoComponent,
+    canActivate: [ClientGuard]
+  },
+  {
+    path: 'queue/:businessId',
+    component: ClientsQueueComponent,
     canActivate: [ClientGuard]
   }
 ];
