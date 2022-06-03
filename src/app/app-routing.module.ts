@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   { 
     path: 'business', 
-    loadChildren: () => import('./modules/business/business-zone.module').then(m => m.BusinessModule)
+    loadChildren: () => import('./modules/business-zone/business-zone.module').then(m => m.BusinessModule)
   },
   { 
     path: 'admin', 
