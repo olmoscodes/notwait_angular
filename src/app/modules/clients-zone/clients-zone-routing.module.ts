@@ -4,6 +4,7 @@ import { ClientGuard } from 'src/app/shared/guards/client/client.guard';
 import { BusinessComponent } from './business/business.component';
 import { ClientsSettingsComponent } from './clients-settings/clients-settings.component';
 import { HomeComponent } from './home/home.component';
+import { ProximityInfoComponent } from './proximity-info/proximity-info.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'settings',
     component: ClientsSettingsComponent,
+    canActivate: [ClientGuard]
+  },
+  {
+    path: 'proximity-info',
+    component: ProximityInfoComponent,
     canActivate: [ClientGuard]
   }
 ];

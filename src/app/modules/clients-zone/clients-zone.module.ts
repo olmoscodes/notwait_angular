@@ -8,6 +8,7 @@ import { sqrt } from 'mathjs';
 import { BusinessComponent } from './business/business.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClientsSettingsComponent } from './clients-settings/clients-settings.component';
+import { ProximityInfoComponent } from './proximity-info/proximity-info.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ClientsSettingsComponent } from './clients-settings/clients-settings.co
     HomeComponent,
     BusinessComponent,
     ClientsSettingsComponent,
+    ProximityInfoComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { ClientsSettingsComponent } from './clients-settings/clients-settings.co
     RouterModule.forChild([
       { path: '', component: HomeComponent},
       { path: ':id', component: BusinessComponent},
-      { path: 'settings', component: ClientsSettingsComponent}
+      { path: 'settings', component: ClientsSettingsComponent},
+      { path: 'proximity-info', component: ProximityInfoComponent}
     ])
   ]
 })
