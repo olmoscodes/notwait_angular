@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserBusiness } from 'src/app/shared/models/user-business.model';
 import { DatabaseService } from 'src/app/shared/services/database.service';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-business',
@@ -9,11 +11,14 @@ import { DatabaseService } from 'src/app/shared/services/database.service';
   styleUrls: ['./business.component.css']
 })
 export class BusinessComponent implements OnInit {
+  
+  faArrowLeft = faArrowLeft;
 
   uid: string = '';
   businessData: UserBusiness | undefined;
   business: UserBusiness | undefined;
   photos: any;
+  businessDataAnimationCounter = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +26,9 @@ export class BusinessComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.dotsAnimation();
+
     this.uid = this.route.snapshot.params['id'];
 
     this.dbService.getDocByFieldAndData("photos", "uuid_user", this.uid).then((data) => {
@@ -58,5 +66,23 @@ export class BusinessComponent implements OnInit {
           });
       })
     });
+  }
+
+  dotsAnimation() {
+    const loadingDots = gsap.timeline()
+    loadingDots.to(".loadingBox", {opacity: 1, pointerEvents: "all"})
+    .fromTo(".d1", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "-=0.5")
+    .fromTo(".d2", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.2" )
+    .fromTo(".d3", 0.2, {backgroundColor: '#5fce62'}, {backgroundColor: '#cccccc', repeat: -1, yoyo: true, repeatDelay: 0.4}, "+=0.4" );
+  }
+
+  businessDataAnimation() {
+    const introAnimation = gsap.timeline()
+    introAnimation.to(".loadingData", 0.5, {opacity: 0, pointerEvents: "none"}, '+=3')
+    .to(".loadingData", 0, {display: "none"}, "-=0.5")
+    .fromTo(".navbar", 0.5, {boxShadow: "0 0 10px 10px rgba(0,0,0,0)"}, {boxShadow: "0 0 10px 10px rgba(0,0,0,0.04)"}, "-=0.5")
+    .fromTo(".card", 0.5, {y: +15}, {y: 0}, '-=0.5')
+    .fromTo('.businessImg', 0.5 ,{opacity: 0}, {opacity: 1}, '-=0.5')
+    this.businessDataAnimationCounter++;
   }
 }

@@ -6,6 +6,7 @@ import { UserBusiness } from "src/app/shared/models/user-business.model";
 import { GeoService } from "src/app/shared/services/geo.service";
 import { gsap } from "gsap";
 import { Router } from "@angular/router";
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-home",
@@ -13,6 +14,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
+
+  faGear = faGear;
+
   businessBoxes: Array<UserBusiness> = new Array();
   //businessBoxes : any[] = [];
   clientLatitude: any = 0;
@@ -30,7 +34,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private dbService: DatabaseService,
-    private authService: AuthService,
     public geolocate: GeoService,
     private router: Router
   ) {}
@@ -40,6 +43,8 @@ export class HomeComponent implements OnInit {
 
     const introAnimation = gsap.timeline()
     introAnimation.to(".intro", 0.5, {opacity: 0, pointerEvents: "none"}, '+=3')
+    .fromTo(".navbar", 0.5, {boxShadow: "0 0 10px 10px rgba(0,0,0,0)"}, {boxShadow: "0 0 10px 10px rgba(0,0,0,0.04)"}, "-=0.5")
+    .to(".gear-settings", 0.5, {opacity: 1, pointerEvents: "auto"}, '=0.5')
 
     this.geolocate
       .getPosition()
@@ -129,10 +134,6 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/location-info']);
       });
       
-  }
-
-  logout() {
-    this.authService.signOut();
   }
 
   getDistanceBetweenPoints(

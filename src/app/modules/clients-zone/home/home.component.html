@@ -9,6 +9,11 @@
 
 <div class="navbar">
   <div class="app-logo-small">notwait</div>
+
+  <a class="gear-settings" routerLink="settings">
+    <fa-icon [icon]="faGear"></fa-icon>
+  </a>
+
 </div>
 
 <!-- <div class="buscador">
@@ -16,7 +21,7 @@
 </div> -->
 
 <div class="businessBoxes">
-  <div *ngFor="let item of sortByDistance(); let i = index" class="businessBox" routerLink="{{item['uid']}}">
+  <div *ngFor="let item of sortByDistance(); let i = index" class="businessBox" routerLink="card/{{item['uid']}}">
     <div *ngIf="!item['distance'] || !item['imgURL']?dotsAnimation():false"></div>
     <div class="loadingBox">
       <div class="d1 dot"></div>
@@ -34,5 +39,3 @@
     </div>
   </div>
 </div>
-
-<a style="position: fixed; bottom: 0; left: 0;" (click)="logout()">LOG OUT</a>

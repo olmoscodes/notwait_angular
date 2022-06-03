@@ -6,7 +6,7 @@ import { DatabaseService } from 'src/app/shared/services/database.service';
 import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { GeoService } from 'src/app/shared/services/geo.service';
-
+import { gsap } from "gsap";
 
 @Component({
   selector: "app-register",
@@ -38,6 +38,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const navbar = gsap.timeline()
+    navbar.fromTo(".navbar", 0.5, {boxShadow: "0 0 10px 10px rgba(0,0,0,0)"}, {boxShadow: "0 0 10px 10px rgba(0,0,0,0.04)"}, "+=1");
     
     this.registerForm = new FormGroup({
       businessName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
@@ -60,6 +62,8 @@ export class RegisterComponent implements OnInit {
       file: new FormControl('', [Validators.required]),
 
     })
+
+
   }
 
 

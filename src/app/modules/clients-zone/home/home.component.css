@@ -17,13 +17,25 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 35%, rgba(255,255,255,0) 100%);
+    background-color: white;
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.04);
     z-index: 100;
-    height: 100px;
+    height: 70px;
 }
 
 .navbar .app-logo-small {
     color: black;
+}
+
+.gear-settings {
+    font-size: 28px;
+    color: #5fce62;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 27px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .buscador {
@@ -68,10 +80,12 @@
 
 .businessBox .details .name {
     margin-bottom: 5px;
+    zoom: 1.4;
 }
 
 .businessBox .details .distance {
     zoom: 0.8;
+    color: #cbcbcb;
 }
 
 .intro {

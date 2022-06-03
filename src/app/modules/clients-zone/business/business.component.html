@@ -1,8 +1,14 @@
 <div class="navbar">
-    <div class="app-logo-small">notwait</div>  
+    <div routerLink="/" class="app-logo-small">notwait</div>  
+
+    <a class="back-arrow" routerLink="../..">
+        <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </a>
 </div>
 
+
 <div class="businessDataBox" *ngIf="businessData" style="color: black">
+    <div *ngIf="businessData['imgURL'] && businessDataAnimationCounter === 0 ?businessDataAnimation():false"></div>
     <img class="businessImg" src="{{businessData['imgURL']}}" alt="">
     <div class="card">
         <div class="card-inside">
@@ -12,14 +18,24 @@
             </div>
             <div class="category">{{businessData['category']}}</div>
             <div class="description">{{businessData['description']}}</div>
-            <button class="basic-button grey">¿Cómo llegar?</button>
+            <a href="https://www.google.es/maps/place/{{businessData['street']}}+{{businessData['number']}}+{{businessData['postalCode']}}+{{businessData['city']}}+{{businessData['stateProvince']}}" class="basic-button grey">¿Cómo llegar?</a>
             <div class="buttons-second-line">
-                <button class="basic-button grey mid">Llamar</button>
-                <button class="basic-button grey mid ">Email</button>
-            </div>
+                <a href="tel:{{businessData['phone']}}" class="basic-button grey mid">Llamar</a>
+                <a href="mailto:{{businessData['email']}}" class="basic-button grey mid ">Email</a>
+            </div> 
+        </div>
+        <div class="card-inside">
             <button class="queue-button">
                 <img src="/assets/img/people-group-solid.png" alt="">
-            </button>    
+            </button>   
         </div>
     </div>
+</div>
+
+<div class="loadingData">
+    <div class="loadingBox">
+        <div class="d1 dot"></div>
+        <div class="d2 dot"></div>
+        <div class="d3 dot"></div>
+      </div>
 </div>
