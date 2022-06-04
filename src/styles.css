@@ -150,3 +150,13 @@ app-clients-settings {
     overflow-y: scroll;
     display: flex;
 }
+
+app-clients-queue {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    flex-direction: column;
+}

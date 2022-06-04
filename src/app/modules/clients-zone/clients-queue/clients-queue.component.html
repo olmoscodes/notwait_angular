@@ -1,1 +1,14 @@
-<p>clients-queue works!</p>
+¿Quieres entrar en la cola?
+<button (click)="answerYes()">si</button>
+<button (click)="answerNo()">no</button>
+
+<br>
+<div *ngIf="beforeLoaded && !clientAdded">
+    Gente delante: {{peopleBefore}} (no added)
+</div>
+
+<div *ngIf="clientAdded">
+    Gente delante: {{peopleBefore}} (added)
+</div>
+
+<button (click)="getOutQueue()">irme de la cola</button>
