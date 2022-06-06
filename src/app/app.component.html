@@ -1,1 +1,12 @@
 <router-outlet></router-outlet>
+
+<div style="position: fixed; bottom: 0; color: black;">
+    <div *ngIf="message;">
+        <h1>{{ message.notification.title }}</h1>
+        <h2>{{ message.notification.body }}</h2>
+      </div>
+      {{currentToken}}
+      <div *ngIf="!message;">
+        No Message Arrived
+      </div>
+</div>

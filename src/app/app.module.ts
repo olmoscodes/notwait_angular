@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { LocationInfoComponent } from './modules/location-info/location-info.component';
 
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from 'src/environments/environment';
+initializeApp(firebaseConfig);
+
 @NgModule({
   declarations: [
     AppComponent,

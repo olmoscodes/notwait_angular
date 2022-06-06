@@ -21,7 +21,7 @@
     "@fortawesome/angular-fontawesome": "^0.10.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@ng-web-apis/geolocation": "^1.0.4",
-    "firebase": "^9.6.10",
+    "firebase": "^9.8.2",
     "gsap": "^3.10.2",
     "mathjs": "^10.6.0",
     "rxjs": "~7.5.0",
